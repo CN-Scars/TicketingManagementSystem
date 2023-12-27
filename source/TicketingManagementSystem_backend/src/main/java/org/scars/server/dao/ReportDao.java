@@ -1,11 +1,11 @@
 package org.scars.server.dao;
 
-import org.scars.pojo.vo.ClerkReport;
-import org.scars.pojo.vo.Report;
+import org.scars.pojo.vo.ClerkReportVO;
+import org.scars.pojo.vo.ReportVO;
 
 import java.util.List;
 
 public interface ReportDao {
-    List<Report> getReports();
-    List<ClerkReport> getClerkReports();
+    List<ReportVO> getReports();
+    List<ClerkReportVO> getClerkReports();
 }

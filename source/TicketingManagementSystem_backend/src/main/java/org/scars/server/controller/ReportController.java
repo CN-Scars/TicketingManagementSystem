@@ -1,7 +1,7 @@
 package org.scars.server.controller;
 
-import org.scars.pojo.vo.ClerkReport;
-import org.scars.pojo.vo.Report;
+import org.scars.pojo.vo.ClerkReportVO;
+import org.scars.pojo.vo.ReportVO;
 import org.scars.server.dao.ReportDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,7 +23,7 @@ public class ReportController {
      * @return
      */
     @GetMapping("/reports")
-    public List<Report> getReports() {
+    public List<ReportVO> getReports() {
         System.out.println("请求了获取门票销售报告");
 
         return reportDao.getReports();
@@ -34,7 +34,7 @@ public class ReportController {
      * @return
      */
     @GetMapping("/clerk_reports")
-    public List<ClerkReport> getClerkReports() {
+    public List<ClerkReportVO> getClerkReports() {
         System.out.println("请求了获取售票员销售报告");
 
         return reportDao.getClerkReports();

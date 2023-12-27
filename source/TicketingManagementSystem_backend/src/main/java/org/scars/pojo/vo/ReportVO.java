@@ -1,20 +1,18 @@
 package org.scars.pojo.vo;
 
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.Map;
 
 @Data
 //@Builder
-public class Report {
+public class ReportVO {
     private Date date;
     private Integer totalSales;
     private Map<Double, Integer> salesByPrice;
 
-    public Report() {
+    public ReportVO() {
         this.totalSales = 0;
     }
 

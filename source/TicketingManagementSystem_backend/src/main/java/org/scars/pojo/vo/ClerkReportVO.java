@@ -7,8 +7,8 @@ import java.util.Date;
 
 @Data
 @Builder
-public class ClerkReport {
+public class ClerkReportVO {
     private String clerkName;
     private Date date;
-    private double charge;
+    private Double charge;
 }
