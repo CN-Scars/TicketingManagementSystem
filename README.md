@@ -60,24 +60,24 @@ flutter run
 
 ### 界面预览
 
-![用户管理页面_0](.\document\DevelopmentDocumentation\imgs\UserManagement_0.png)
+![用户管理页面_0](document/DevelopmentDocumentation/imgs/UserManagement_0.png)
 
-![用户管理页面_1](.\document\DevelopmentDocumentation\imgs\UserManagement_1.png)
+![用户管理页面_1](document/DevelopmentDocumentation/imgs/UserManagement_1.png)
 
-![用户管理页面_2](.\document\DevelopmentDocumentation\imgs\UserManagement_2.png)
+![用户管理页面_2](document/DevelopmentDocumentation/imgs/UserManagement_2.png)
 
-![门票管理页面_0](.\document\DevelopmentDocumentation\imgs\Ticket_Management_0.png)
+![门票管理页面_0](document/DevelopmentDocumentation/imgs/Ticket_Management_0.png)
 
-![门票管理页面_1](.\document\DevelopmentDocumentation\imgs\Ticket_Management_1.png)
+![门票管理页面_1](document/DevelopmentDocumentation/imgs/Ticket_Management_1.png)
 
-![门票管理系统页面_2](.\document\DevelopmentDocumentation\imgs\Ticket_Management_2.png)
+![门票管理系统页面_2](document/DevelopmentDocumentation/imgs/Ticket_Management_2.png)
 
-![门票管理页面_3](.\document\DevelopmentDocumentation\imgs\Ticket_Management_3.png)
+![门票管理页面_3](document/DevelopmentDocumentation/imgs/Ticket_Management_3.png)
 
-![订单管理页面_0](.\document\DevelopmentDocumentation\imgs\Order_Management_0.png)
+![订单管理页面_0](document/DevelopmentDocumentation/imgs/Order_Management_0.png)
 
-![订单管理页面_1](.\document\DevelopmentDocumentation\imgs\Order_Management_1.png)
+![订单管理页面_1](document/DevelopmentDocumentation/imgs/Order_Management_1.png)
 
-![数据报表页面_0](.\document\DevelopmentDocumentation\imgs\Report_0.png)
+![数据报表页面_0](document/DevelopmentDocumentation/imgs/Report_0.png)
 
-![数据报表页面_1](.\document\DevelopmentDocumentation\imgs\Report_1.png)
+![数据报表页面_1](document/DevelopmentDocumentation/imgs/Report_1.png)
