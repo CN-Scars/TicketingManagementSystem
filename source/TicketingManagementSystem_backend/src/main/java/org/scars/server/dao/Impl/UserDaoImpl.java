@@ -28,6 +28,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * 从数据库中获取所有用户信息
+     *
      * @return
      */
     @Override
@@ -51,6 +52,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * 添加用户
+     *
      * @param user
      */
     @Override
@@ -74,6 +76,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * 修改用户信息
+     *
      * @param user
      */
     @Override
@@ -92,6 +95,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * 删除用户信息
+     *
      * @param id
      */
     @Override
@@ -114,6 +118,7 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * 根据用户属性信息获取用户信息
+     *
      * @param name
      * @param email
      * @return
@@ -145,17 +150,18 @@ public class UserDaoImpl implements UserDao {
 
     /**
      * 根据用户id获取用户名
+     *
      * @param id
      * @return
      */
     @Override
     public String getUserNameById(Long id) {
         String Username = null;
-        String sql = "SELECT Username FROM user where UserID="+id;
+        String sql = "SELECT Username FROM user where UserID=" + id;
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             resultSet.next();
-            Username= resultSet.getString("Username");
+            Username = resultSet.getString("Username");
         } catch (SQLException e) {
             e.printStackTrace();
         }

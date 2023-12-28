@@ -16,6 +16,7 @@ public class TicketController {
 
     /**
      * 获取所有门票
+     *
      * @return
      */
     @GetMapping
@@ -25,6 +26,7 @@ public class TicketController {
 
     /**
      * 添加门票
+     *
      * @param ticket
      */
     @PostMapping
@@ -34,6 +36,7 @@ public class TicketController {
 
     /**
      * 搜索门票
+     *
      * @param ticketName
      * @param price
      * @param stock
@@ -46,6 +49,7 @@ public class TicketController {
 
     /**
      * 更新门票
+     *
      * @param ticket
      */
     @PutMapping
@@ -53,6 +57,11 @@ public class TicketController {
         ticketDao.updateTicket(ticket);
     }
 
+    /**
+     * 删除门票
+     *
+     * @param id
+     */
     @DeleteMapping("/{id}")
     public void deleteTicket(@PathVariable Long id) {
         ticketDao.deleteTicket(id);

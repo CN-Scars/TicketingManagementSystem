@@ -24,17 +24,18 @@ public class SellerDaoImpl implements SellerDao {
 
     /**
      * 根据id获取售票员名称
+     *
      * @param id
      * @return
      */
     @Override
     public String getSellerNameById(Long id) {
         String SellerName = null;
-        String sql = "SELECT Name FROM seller where SellerId="+id;
+        String sql = "SELECT Name FROM seller where SellerId=" + id;
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             resultSet.next();
-            SellerName= resultSet.getString("Name");
+            SellerName = resultSet.getString("Name");
         } catch (SQLException e) {
             e.printStackTrace();
         }

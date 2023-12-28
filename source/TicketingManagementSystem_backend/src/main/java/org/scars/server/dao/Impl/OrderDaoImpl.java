@@ -1,9 +1,8 @@
 package org.scars.server.dao.Impl;
 
-import lombok.Builder;
+import org.scars.common.constant.StatusConstant;
 import org.scars.pojo.vo.OrderVO;
 import org.scars.server.dao.OrderDao;
-import org.scars.pojo.entity.Order;
 import org.scars.server.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -79,9 +78,10 @@ public class OrderDaoImpl implements OrderDao {
     public void refundOrder(Long id) {
         System.out.println("进行了退单");
 
-        String sql = "UPDATE `order` SET State=0 WHERE OrderID = ?";
+        String sql = "UPDATE `order` SET State=? WHERE OrderID = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setLong(1, id);
+            preparedStatement.setInt(1, StatusConstant.DISABLE);
+            preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

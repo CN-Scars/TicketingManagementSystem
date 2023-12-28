@@ -20,6 +20,7 @@ public class ReportController {
 
     /**
      * 获取门票销售报告
+     *
      * @return
      */
     @GetMapping("/reports")
@@ -31,6 +32,7 @@ public class ReportController {
 
     /**
      * 获取售票员销售报告
+     *
      * @return
      */
     @GetMapping("/clerk_reports")

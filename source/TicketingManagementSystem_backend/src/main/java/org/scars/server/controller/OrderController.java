@@ -2,7 +2,6 @@ package org.scars.server.controller;
 
 import org.scars.pojo.vo.OrderVO;
 import org.scars.server.dao.OrderDao;
-import org.scars.pojo.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

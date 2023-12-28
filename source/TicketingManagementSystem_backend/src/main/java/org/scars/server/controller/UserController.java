@@ -16,6 +16,7 @@ public class UserController {
 
     /**
      * 获取所有用户信息
+     *
      * @return
      */
     @GetMapping
@@ -25,6 +26,7 @@ public class UserController {
 
     /**
      * 根据用户名和邮箱搜索用户
+     *
      * @param name
      * @param email
      * @return
@@ -36,6 +38,7 @@ public class UserController {
 
     /**
      * 更新用户信息
+     *
      * @param user
      */
     @PutMapping
@@ -45,6 +48,7 @@ public class UserController {
 
     /**
      * 删除用户信息
+     *
      * @param id
      */
     @DeleteMapping("/{id}")
@@ -54,6 +58,7 @@ public class UserController {
 
     /**
      * 添加用户
+     *
      * @param user
      */
     @PostMapping

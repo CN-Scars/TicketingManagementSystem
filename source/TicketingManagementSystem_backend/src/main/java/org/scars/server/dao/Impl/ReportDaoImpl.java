@@ -1,5 +1,6 @@
 package org.scars.server.dao.Impl;
 
+import org.scars.common.constant.StatusConstant;
 import org.scars.pojo.vo.ClerkReportVO;
 import org.scars.pojo.vo.ReportVO;
 import org.scars.server.dao.ReportDao;
@@ -39,7 +40,8 @@ public class ReportDaoImpl implements ReportDao {
     @Override
     public List<ReportVO> getReports() {
         List<ReportVO> reportVOS = new ArrayList<>();
-        String query = "SELECT OrderDate, TotalPrice, SUM(Quantity) as Quantity FROM `order` WHERE state = 1 GROUP BY OrderDate, TotalPrice";
+        String query = "SELECT OrderDate, TotalPrice, SUM(Quantity) as Quantity FROM `order` WHERE state = " + StatusConstant.ENABLE +
+                " GROUP BY OrderDate, TotalPrice";
 
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
@@ -80,7 +82,8 @@ public class ReportDaoImpl implements ReportDao {
     @Override
     public List<ClerkReportVO> getClerkReports() {
         Map<String, ClerkReportVO> clerkReportMap = new HashMap<>();
-        String query = "SELECT SellerId, OrderDate, SUM(TotalPrice) as TotalCharge FROM `order` WHERE State = 1 GROUP BY SellerId, OrderDate";
+        String query = "SELECT SellerId, OrderDate, SUM(TotalPrice) as TotalCharge FROM `order` WHERE State = " + StatusConstant.ENABLE +
+                " GROUP BY SellerId, OrderDate";
 
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {

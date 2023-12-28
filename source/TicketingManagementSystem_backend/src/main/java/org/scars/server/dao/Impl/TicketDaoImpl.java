@@ -174,17 +174,18 @@ public class TicketDaoImpl implements TicketDao {
 
     /**
      * 根据门票id获取门票名
+     *
      * @param id
      * @return
      */
     @Override
     public String getTicketNameById(Long id) {
         String TicketName = null;
-        String sql = "SELECT TicketName FROM ticket where TicketID="+id;
+        String sql = "SELECT TicketName FROM ticket where TicketID=" + id;
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             resultSet.next();
-            TicketName= resultSet.getString("TicketName");
+            TicketName = resultSet.getString("TicketName");
         } catch (SQLException e) {
             e.printStackTrace();
         }
