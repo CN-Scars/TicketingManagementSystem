@@ -13,6 +13,7 @@ class _UserManagementPageState extends State<UserManagementPage> {
   List<User> users = [];
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
 
   @override
   void initState() {
@@ -86,20 +87,20 @@ class _UserManagementPageState extends State<UserManagementPage> {
     }
   }
 
-  Future<void> addUser(User user, Function onUpdate) async {
+  Future<void> addUser(User newUser, Function onUpdate) async {
     final response = await http.post(
       Uri.parse('http://localhost:8080/users'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
-      body: jsonEncode(user.toJson()),
+      body: jsonEncode(newUser.toJson()),
     );
 
     if (response.statusCode == 200) {
-      print('用户创建成功');
-      onUpdate(); 
+      print('用户添加成功');
+      onUpdate();
     } else {
-      print('用户创建失败');
+      print('用户添加失败');
     }
   }
 
@@ -132,6 +133,13 @@ class _UserManagementPageState extends State<UserManagementPage> {
                   border: OutlineInputBorder(),
                 ),
               ),
+              TextField(
+                controller: ageController,
+                decoration: InputDecoration(
+                  labelText: '年龄',
+                  border: OutlineInputBorder(),
+                ),
+              )
             ],
           ),
           actions: <Widget>[
@@ -148,6 +156,7 @@ class _UserManagementPageState extends State<UserManagementPage> {
                   id: user.id,
                   name: nameController.text,
                   email: emailController.text,
+                  age: int.parse(ageController.text),
                 );
                 updateUser(updatedUser, fetchUsers);
                 Navigator.of(context).pop();
@@ -189,6 +198,7 @@ class _UserManagementPageState extends State<UserManagementPage> {
   void showAddDialog(BuildContext context) {
     final TextEditingController nameController = TextEditingController();
     final TextEditingController emailController = TextEditingController();
+    final TextEditingController ageController = TextEditingController();
 
     showDialog(
       context: context,
@@ -213,6 +223,13 @@ class _UserManagementPageState extends State<UserManagementPage> {
                   border: OutlineInputBorder(),
                 ),
               ),
+              TextField(
+                controller: ageController,
+                decoration: InputDecoration(
+                  labelText: '年龄',
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ],
           ),
           actions: <Widget>[
@@ -225,10 +242,15 @@ class _UserManagementPageState extends State<UserManagementPage> {
             TextButton(
               child: Text('确认'),
               onPressed: () {
+                if (int.tryParse(ageController.text) == null) {
+                  print('请输入有效的年龄');
+                  return;
+                }
                 User newUser = User(
                   id: 0, // 服务器应该忽略这个id并自动生成一个新的id
                   name: nameController.text,
                   email: emailController.text,
+                  age: int.parse(ageController.text),
                 );
                 addUser(newUser, fetchUsers);
                 Navigator.of(context).pop();
@@ -292,7 +314,13 @@ class _UserManagementPageState extends State<UserManagementPage> {
                   return Card(
                     child: ListTile(
                       title: Text(users[index].name),
-                      subtitle: Text(users[index].email),
+                      subtitle: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(users[index].email),
+                          Text('年龄: ${users[index].age}'),
+                        ],
+                      ),
                       trailing: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
