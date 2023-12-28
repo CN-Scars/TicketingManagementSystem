@@ -72,20 +72,43 @@ class _OrderManagementPageState extends State<OrderManagementPage> {
   }
 
   Future<void> refundOrder(Order order) async {
-    final response = await http.put(
-      Uri.parse('http://localhost:8080/orders/${order.orderID}'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode({'state': 0}),
-    );
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('确认退单'),
+          content: Text('您确定要退单吗？'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('取消'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('确认'),
+              onPressed: () async {
+                final response = await http.put(
+                  Uri.parse('http://localhost:8080/orders/${order.orderID}'),
+                  headers: <String, String>{
+                    'Content-Type': 'application/json; charset=UTF-8',
+                  },
+                  body: jsonEncode({'state': 0}),
+                );
 
-    if (response.statusCode == 200) {
-      print('订单退票成功');
-      fetchOrders();
-    } else {
-      print('订单退票失败');
-    }
+                if (response.statusCode == 200) {
+                  print('订单退票成功');
+                  fetchOrders();
+                } else {
+                  print('订单退票失败');
+                }
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   Future<void> searchOrders() async {
@@ -210,7 +233,9 @@ class _OrderManagementPageState extends State<OrderManagementPage> {
                           Text('购买数量: ${orders[index].quantity}'),
                           Text(
                               '总价: ${orders[index].totalPrice.toStringAsFixed(2)}'),
-                          Text('下单时间: ${DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.parse(orders[index].orderDate))}'), // 精确到秒
+                          Text(
+                              '下单时间: ${DateFormat('yyyy-MM-dd HH:mm:ss').format(DateTime.parse(orders[index].orderDate))}'),
+                          // 精确到秒
                           Text('售票员姓名: ${orders[index].sellerName}'),
                           Text(
                               '订单状态: ${orders[index].state == 1 ? '已购买' : '已退票'}'),
