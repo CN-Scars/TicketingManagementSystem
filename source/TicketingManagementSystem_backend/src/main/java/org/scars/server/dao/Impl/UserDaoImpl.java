@@ -42,6 +42,7 @@ public class UserDaoImpl implements UserDao {
                 user.setId(resultSet.getLong("UserID"));
                 user.setName(resultSet.getString("Username"));
                 user.setEmail(resultSet.getString("Email"));
+                user.setAge(resultSet.getInt("Age"));
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -58,11 +59,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void addUser(User user) {
         // 实现添加用户
-        String sql = "INSERT INTO User(Username, Email) VALUES (?, ?)";
+        String sql = "INSERT INTO `user`(Username, Email, Age) VALUES (?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setInt(3, user.getAge());
             int rows = preparedStatement.executeUpdate();
             if (rows > 0) {
                 System.out.println("添加成功！");
@@ -82,11 +84,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void updateUser(User user) {
         // 从user中获取id和其它属性实现修改
-        String sql = "UPDATE User SET Username = ?, Email = ? WHERE UserID = ?";
+        String sql = "UPDATE `user` SET Username = ?, Email = ?, Age = ? WHERE UserID = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getEmail());
-            preparedStatement.setLong(3, user.getId());
+            preparedStatement.setInt(3, user.getAge());
+            preparedStatement.setLong(4, user.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -101,7 +104,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void deleteUser(Long id) {
         // 实现删除用户
-        String sql = "DELETE FROM User WHERE UserID = ?";
+        String sql = "DELETE FROM `user` WHERE UserID = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setLong(1, id);
             int rows = preparedStatement.executeUpdate();
@@ -127,7 +130,7 @@ public class UserDaoImpl implements UserDao {
     public List<User> searchUsers(String name, String email) {
         // 条件查询用户
         List<User> users = new ArrayList<>();
-        String sql = "SELECT * FROM User WHERE Username LIKE ? AND Email LIKE ?";
+        String sql = "SELECT * FROM `user` WHERE Username LIKE ? AND Email LIKE ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, "%" + name + "%");
             preparedStatement.setString(2, "%" + email + "%");
@@ -137,6 +140,7 @@ public class UserDaoImpl implements UserDao {
                     user.setId(resultSet.getLong("UserID"));
                     user.setName(resultSet.getString("Username"));
                     user.setEmail(resultSet.getString("Email"));
+                    user.setAge(resultSet.getInt("Age"));
                     users.add(user);
                 }
             }
@@ -157,7 +161,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public String getUserNameById(Long id) {
         String Username = null;
-        String sql = "SELECT Username FROM user where UserID=" + id;
+        String sql = "SELECT Username FROM `user` where UserID=" + id;
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             resultSet.next();

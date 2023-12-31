@@ -109,6 +109,8 @@ class _UserManagementPageState extends State<UserManagementPage> {
         TextEditingController(text: user.name);
     final TextEditingController emailController =
         TextEditingController(text: user.email);
+    final TextEditingController ageController =
+        TextEditingController(text: user.age.toString()); // 添加这行代码
 
     showDialog(
       context: context,
@@ -133,6 +135,7 @@ class _UserManagementPageState extends State<UserManagementPage> {
                   border: OutlineInputBorder(),
                 ),
               ),
+              SizedBox(height: 8.0),
               TextField(
                 controller: ageController,
                 decoration: InputDecoration(
